@@ -12,12 +12,27 @@ const items=[
     content:'you can learn easily and blah blah '
   }
 ];
+const options=[
+  {
+    label:'Green',
+    value:'green'
+  },
+  {
+    label:'Blue',
+    value:'blue'
+  },
+  {
+    label:'Red',
+    value:'red'
+  }];
+
 function App() {
   const [count, setCount] = useState(0)
+  const [selected,setSelected] = useState(options[0]);
 
   return <div>
     <br/>
-    <DropDown/>
+    <DropDown options={options} selected={selected} OnSelectedChange={setSelected} />
   </div>
 }
 export default App

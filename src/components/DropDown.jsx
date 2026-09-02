@@ -1,32 +1,34 @@
-import react from 'react';
+import react, {useEffect, useState,useRef} from 'react';
 
-const options=[
-    {
-        label:'Green',
-        value:'green'
-    },
-    {
-        label:'Blue',
-        value:'blue'
-    },
-    {
-        label:'Red',
-        value:'red'
-    }];
-const DropDown = () => {
+
+const DropDown = ({options,selected,OnSelectedChange}) => {
+    const [open, setOpen] = useState(false);
+    const ref = useRef();
+    useEffect(() => {
+        document.body.addEventListener('click', () => {
+            if(ref.current.contains(event.target)) {
+                return;
+            }
+            setOpen(false);
+        },{capture: true});
+    }, []);
     const RenderOptions=options.map((option) =>{
-       return <div key={option.value} className="item">
+        if(option.value===selected.value){
+            return null;
+        }
+       return <div key={option.value} className="item"
+                   onClick={()=>OnSelectedChange(option)}>
            {option.label}
         </div>
     })
     return <div>
-        <div className="ui form">
+        <div ref={ref} className="ui form">
             <div className="field">
                 <label className="label">Select color</label>
-                <div className="ui selection dropdown visible active">
+                <div onClick={()=>setOpen(!open)} className={`ui selection dropdown ${open?'visible active':''}`}>
                     <i className="dropdown icon"></i>
-                    <div className="text"> Select Color</div>
-                    <div className="menu visible transition">
+                    <div className="text"> {selected.label}</div>
+                    <div className={`menu ${open ? 'visible transition' :''}`}>
                         {RenderOptions}
                     </div>
                 </div>

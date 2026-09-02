@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Accordion from "./components/Accordion.jsx";
 import Search from "./components/Search.jsx";
-
+import DropDown from "./components/DropDown.jsx";
 const items=[
   {
     title:'What is the react:',
@@ -17,8 +17,7 @@ function App() {
 
   return <div>
     <br/>
-    <Search/>
+    <DropDown/>
   </div>
 }
-
 export default App

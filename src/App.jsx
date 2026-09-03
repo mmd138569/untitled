@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Accordion from "./components/Accordion.jsx";
 import Search from "./components/Search.jsx";
 import DropDown from "./components/DropDown.jsx";
+import Translate from "./components/Translate.jsx";
 const items=[
   {
     title:'What is the react:',
@@ -32,7 +33,7 @@ function App() {
 
   return <div>
     <br/>
-    <DropDown options={options} selected={selected} OnSelectedChange={setSelected} />
+    <Translate/>
   </div>
 }
 export default App
